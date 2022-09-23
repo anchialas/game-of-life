@@ -15,7 +15,8 @@ public class GameOfLife {
                 }
             }
         }
-        return numberOfAliveNeighbours >= 2;
+
+        return numberOfAliveNeighbours >= 2 && numberOfAliveNeighbours < 4;
     }
 
 }

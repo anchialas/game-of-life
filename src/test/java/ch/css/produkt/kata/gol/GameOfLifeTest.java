@@ -38,4 +38,17 @@ class GameOfLifeTest {
 
         assertTrue(result);
     }
+
+    @Test
+    void willBeAlive_overpopulation_death() {
+        int[][] world = {
+                {0, 1, 0},
+                {1, 1, 1},
+                {0, 1, 0}
+        };
+
+        boolean result = testee.willBeAlive(world);
+
+        assertFalse(result);
+    }
 }
