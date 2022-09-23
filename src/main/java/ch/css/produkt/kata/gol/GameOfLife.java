@@ -16,6 +16,10 @@ public class GameOfLife {
             }
         }
 
+        if (localSpace[1][1] == 0) {
+            return numberOfAliveNeighbours == 3;
+        }
+
         return numberOfAliveNeighbours >= 2 && numberOfAliveNeighbours < 4;
     }
 
