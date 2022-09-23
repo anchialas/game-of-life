@@ -58,7 +58,6 @@ public class GameOfLife {
                 {0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0}
         };
-
     }
 
     public int[][] calculateNextGeneration(int[][] currentGeneration) {
@@ -115,7 +114,7 @@ public class GameOfLife {
         for (int[] xArr : arr) {
             sb.append('\n');
             for (int value : xArr) {
-                sb.append(value == 0 ? "· " : " ");
+                sb.append(value == 0 ? "· " : "# ");
             }
         }
         return sb.toString();
