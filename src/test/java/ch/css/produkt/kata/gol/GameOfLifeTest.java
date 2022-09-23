@@ -22,7 +22,7 @@ class GameOfLifeTest {
     }
 
     @Test
-    void calculateNextGenerationSimpleTest() {
+    void calculateNextGeneration_blinker() {
         int[][] currentGeneration = {
                 {0,0,0,0,0},
                 {0,0,1,0,0},
@@ -40,7 +40,8 @@ class GameOfLifeTest {
 
         int[][] result = testee.calculateNextGeneration(currentGeneration);
 
-        assertTrue(Arrays.deepEquals(result, expectedGeneration));
+        assertTrue(Arrays.deepEquals(result, expectedGeneration),
+                () -> "got:" + testee.toString(result) + "\nexpected:" + testee.toString(expectedGeneration));
     }
 
 

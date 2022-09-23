@@ -14,8 +14,10 @@ public class GameOfLife {
         int[][] nextGeneration = new int[currentGeneration.length][currentGeneration[0].length];
         for (int x = 0; x < currentGeneration.length; x++) {
             for (int y = 0; y < currentGeneration[x].length; y++) {
+                LOG.info("getLocalArray({},{})",x, y);
                 int[][] localSpace = getLocalArray(currentGeneration, x ,y);
                 int nextValue = willBeAlive(localSpace) ? 1 :0;
+                LOG.info("nextValue: {}", nextValue);
                 nextGeneration[x][y] = nextValue;
             }
         }
@@ -30,17 +32,17 @@ public class GameOfLife {
                 for (int y = 0; y <= 2; y++) {
                     int posYWorld = posY + y -1;
                     if (posYWorld >= 0 && posYWorld < world[posXWorld].length) {
-                        localArr[x][y] = world[posXWorld][posXWorld];
+                        localArr[x][y] = world[posXWorld][posYWorld];
                     }
                 }
             }
         }
+        LOG.info("calculated LocalArray: {}", toString(localArr));
         return localArr;
     }
 
 
     boolean willBeAlive(int[][] localSpace) {
-        LOG.info("localSpace: {}", toString(localSpace));
         int numberOfAliveNeighbours = 0;
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
