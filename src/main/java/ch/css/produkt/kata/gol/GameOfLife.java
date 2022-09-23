@@ -47,7 +47,7 @@ public class GameOfLife {
     private void clearOutput() {
         writeOutput("\\033[H\\033[2J");
     }
-
+    
     private static int[][] getInitialGeneration() {
         return new int[][]{
                 {0, 0, 0, 0, 0, 0, 0},
@@ -115,7 +115,7 @@ public class GameOfLife {
         for (int[] xArr : arr) {
             sb.append('\n');
             for (int value : xArr) {
-                sb.append(value == 0 ? "O " : "X ");
+                sb.append(value == 0 ? "· " : " ");
             }
         }
         return sb.toString();
