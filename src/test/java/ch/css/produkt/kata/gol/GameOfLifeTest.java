@@ -22,6 +22,23 @@ class GameOfLifeTest {
     }
 
     @Test
+    void calculateNextGeneration_boat() {
+        int[][] currentGeneration = {
+                {0,0,0,0,0},
+                {0,1,1,0,0},
+                {0,1,0,1,0},
+                {0,0,1,0,0},
+                {0,0,0,0,0}
+        };
+        int[][] expectedGeneration = currentGeneration;
+
+        int[][] result = testee.calculateNextGeneration(currentGeneration);
+
+        assertTrue(Arrays.deepEquals(result, expectedGeneration),
+                () -> "got:" + testee.toString(result) + "\nexpected:" + testee.toString(expectedGeneration));
+    }
+
+    @Test
     void calculateNextGeneration_blinker() {
         int[][] currentGeneration = {
                 {0,0,0,0,0},
@@ -44,6 +61,29 @@ class GameOfLifeTest {
                 () -> "got:" + testee.toString(result) + "\nexpected:" + testee.toString(expectedGeneration));
     }
 
+
+    @Test
+    void calculateNextGeneration_glider() {
+        int[][] currentGeneration = {
+                {0,0,0,0,0},
+                {0,0,1,0,0},
+                {0,0,0,1,0},
+                {0,1,1,1,0},
+                {0,0,0,0,0}
+        };
+        int[][] expectedGeneration = {
+                {0,0,0,0,0},
+                {0,0,0,0,0},
+                {0,1,0,1,0},
+                {0,0,1,1,0},
+                {0,0,1,0,0}
+        };
+
+        int[][] result = testee.calculateNextGeneration(currentGeneration);
+
+        assertTrue(Arrays.deepEquals(result, expectedGeneration),
+                () -> "got:" + testee.toString(result) + "\nexpected:" + testee.toString(expectedGeneration));
+    }
 
     private static List<int[][]> provideFriendlySituations() {
         int[][] a = {
