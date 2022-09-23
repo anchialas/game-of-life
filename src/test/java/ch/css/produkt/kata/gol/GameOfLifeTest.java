@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -19,6 +20,29 @@ class GameOfLifeTest {
     void setUp() {
         testee = new GameOfLife();
     }
+
+    @Test
+    void calculateNextGenerationSimpleTest() {
+        int[][] currentGeneration = {
+                {0,0,0,0,0},
+                {0,0,1,0,0},
+                {0,0,1,0,0},
+                {0,0,1,0,0},
+                {0,0,0,0,0}
+        };
+        int[][] expectedGeneration = {
+                {0,0,0,0,0},
+                {0,0,0,0,0},
+                {0,1,1,1,0},
+                {0,0,0,0,0},
+                {0,0,0,0,0}
+        };
+
+        int[][] result = testee.calculateNextGeneration(currentGeneration);
+
+        assertTrue(Arrays.deepEquals(result, expectedGeneration));
+    }
+
 
     private static List<int[][]> provideFriendlySituations() {
         int[][] a = {
@@ -51,7 +75,12 @@ class GameOfLifeTest {
                 {0, 1, 0},
                 {0, 1, 0}
         };
-        return List.of(a, b, c, d, e, f);
+        int[][] g = {
+                {0, 0, 1},
+                {0, 0, 1},
+                {0, 0, 1}
+        };
+        return List.of(a, b, c, d, e, f, g);
     }
 
     @ParameterizedTest
