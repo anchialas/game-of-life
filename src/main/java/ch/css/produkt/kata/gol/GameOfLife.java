@@ -1,6 +1,10 @@
 package ch.css.produkt.kata.gol;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class GameOfLife {
+    private static final Logger LOG = LogManager.getLogger();
 
     public static void main(String... args) {
         System.out.println("Hello World!");
@@ -36,6 +40,7 @@ public class GameOfLife {
 
 
     boolean willBeAlive(int[][] localSpace) {
+        LOG.info("localSpace: {}", toString(localSpace));
         int numberOfAliveNeighbours = 0;
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
@@ -51,5 +56,17 @@ public class GameOfLife {
 
         return numberOfAliveNeighbours >= 2 && numberOfAliveNeighbours < 4;
     }
+
+    public String toString(int[][] arr) {
+        StringBuilder sb = new StringBuilder();
+        for (int[] xArr : arr) {
+            sb.append('\n');
+            for (int value : xArr) {
+                sb.append(value == 0 ? "O " : "X ");
+            }
+        }
+        return sb.toString();
+    }
+
 
 }
